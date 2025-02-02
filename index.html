@@ -131,7 +131,8 @@
         /* Letter */
         .letter {
             position: absolute;
-            width: 600px; /* Increased width */
+            width: 80%; /* Use percentage for responsiveness */
+            max-width: 600px; /* Max width for larger screens */
             height: 450px; /* Fixed height */
             background: white;
             border-radius: 5px;
@@ -145,7 +146,14 @@
             opacity: 0;
             transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
             white-space: pre-line;
-            overflow: hidden; /* Prevents overflow */
+            overflow: hidden;
+        }
+
+        /* Scrollable letter content */
+        .letter-content {
+            max-height: 350px;
+            overflow-y: scroll;
+            padding-right: 10px; /* Add padding for scroll */
         }
 
         /* Floating love emojis */
@@ -191,11 +199,12 @@
         /* Text and button for next page (on the right side of the envelope) */
         .next-page-text {
             position: absolute;
-            right: 30px;  /* Right-align the text and button */
+            right: 5%;  /* Adjust for responsiveness */
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.5em;
             color: #ff6699;
+            text-align: center;
         }
 
         .next-page-text button {
@@ -240,6 +249,36 @@
                 transform: translateY(20px);
             }
         }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .letter {
+                width: 90%; /* Take up more space on small screens */
+                height: auto; /* Adjust height for smaller devices */
+                padding: 15px;
+                font-size: 1em; /* Adjust font size */
+            }
+
+            .next-page-text {
+                right: 10px; /* Adjust for smaller screens */
+            }
+
+            .next-page-text button {
+                font-size: 0.9em; /* Slightly smaller button text */
+                padding: 8px 15px; /* Smaller button padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .next-page-text {
+                font-size: 1.2em; /* Reduce size for very small screens */
+            }
+
+            .next-page-text button {
+                font-size: 0.8em;
+                padding: 6px 12px; /* Adjust button size for smaller screens */
+            }
+        }
     </style>
 </head>
 <body onclick="closeEnvelope(event)">
@@ -251,7 +290,11 @@
     <div class="envelope-container" onclick="toggleEnvelope(event)">
         <div class="envelope"></div>
         <div class="seal">❤</div>
-        <div class="letter">💌 Dear Farhana, <br> Happy Birthday 🎂 to my jellyfish 🪼 my kaju badam. On this day the best gift of my life has come to the earth 🌎. I wish all you want in life Allah fulfills your wishes, Allah always keep you healthy. I love your anger, your smile and I want to see them for ever for full life 😍. My shoulder is always available whenever you need me. I will love you forever. I am promising you I will work hard and will marry you in sha allah 🤲🏻 this is my gift for you on your birthday. I can't tell how much I love you ❤. You make me a man from a boy. You are the water 🌊 if did not get it I can't grow 🪴. Thank you for all and thanks to Allah. I promise you my love, care, affection will never be less. I will love 💕 you more and more. I wish Allah give you all the happiness all the joy all the peace you want. I love you Sk Farhana 💕. Happy birthday babi 😘 and allah will make you more happy in sha allah.</div>
+        <div class="letter">
+            <div class="letter-content">
+                💌 Dear Farhana, <br> Happy Birthday 🎂 to my jellyfish 🪼 my kaju badam. On this day the best gift of my life has come to the earth 🌎. I wish all you want in life Allah fulfills your wishes, Allah always keep you healthy. I love your anger, your smile and I want to see them for ever for full life 😍. My shoulder is always available whenever you need me. I will love you forever. I am promising you I will work hard and will marry you in sha allah 🤲🏻 this is my gift for you on your birthday. I can't tell how much I love you ❤. You make me a man from a boy. You are the water 🌊 if did not get it I can't grow 🪴. Thank you for all and thanks to Allah. I promise you my love, care, affection will never be less. I will love 💕 you more and more. I wish Allah give you all the happiness all the joy all the peace you want. I love you Sk Farhana 💕. Happy birthday babi 😘 and allah will make you more happy in sha allah.                                                                                                 .........
+            </div>
+        </div>
     </div>
 
     <p class="emoji-button" onclick="toggleEnvelope(event)">💌</p>
@@ -271,73 +314,56 @@
             const particle = document.createElement('div');
             particle.classList.add('particle');
             document.querySelector('.particles').appendChild(particle);
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
 
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
+            setTimeout(() => particle.remove(), 3000);
+        }, 300);
 
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-
-            setTimeout(() => {
-                particle.remove();
-            }, 2000);
-        }, 100);
-
+        // Envelope toggle function
         function toggleEnvelope(event) {
-            event.stopPropagation(); // Prevents closing when tapping on the envelope
-            const container = document.querySelector(".envelope-container");
-            const nextPageText = document.querySelector(".next-page-text");
-            if (!isOpened) {
-                container.classList.add("opened");
-                isOpened = true;
-                if (hasClosedLetter) {
-                    nextPageText.style.display = "none";
-                }
-            } else {
-                container.classList.remove("opened");
-                isOpened = false;
-                if (!hasClosedLetter) {
-                    nextPageText.style.display = "block";
-                    hasClosedLetter = true;
-                }
-            }
-        }
+            if (isOpened) return;
 
-        function closeEnvelope(event) {
-            const container = document.querySelector(".envelope-container");
-            const nextPageText = document.querySelector(".next-page-text");
-            if (isOpened && !event.target.closest(".envelope-container")) {
-                container.classList.remove("opened");
-                isOpened = false;
-                nextPageText.style.display = "block";
+            const envelope = document.querySelector('.envelope');
+            const letter = document.querySelector('.letter');
+            const seal = document.querySelector('.seal');
+
+            if (!hasClosedLetter) {
+                letter.style.opacity = 1;
+                letter.style.top = '30%';
+                seal.style.opacity = 0;
+                envelope.style.transform = 'translateY(-30px)';
+                envelope.classList.add('opened');
                 hasClosedLetter = true;
+            } else {
+                letter.style.opacity = 0;
+                letter.style.top = '100%';
+                envelope.style.transform = 'translateY(0)';
+                envelope.classList.remove('opened');
+                seal.style.opacity = 1;
+                hasClosedLetter = false;
             }
         }
 
+        // Close envelope when clicking outside
+        function closeEnvelope(event) {
+            if (!event.target.closest('.envelope-container')) {
+                const envelope = document.querySelector('.envelope');
+                const letter = document.querySelector('.letter');
+                const seal = document.querySelector('.seal');
+                letter.style.opacity = 0;
+                letter.style.top = '100%';
+                envelope.style.transform = 'translateY(0)';
+                envelope.classList.remove('opened');
+                seal.style.opacity = 1;
+                hasClosedLetter = false;
+            }
+        }
+
+        // Go to next page
         function nextPage() {
-            window.location.href = "nextpage.html"; // This will navigate to another page
+            window.location.href = 'next.html';
         }
-
-        // Floating love emoji animation
-        function createFloatingEmoji() {
-            const emojis = ["❤", "💖", "💘", "💗", "💞", "💓", "💜", "💙", "💚", "💛", "🐌", "🎂", "🦖", "🐙", "🌊", "🎈", "🎉"];
-            const emoji = document.createElement("div");
-            emoji.classList.add("floating-emoji");
-            emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            document.body.appendChild(emoji);
-
-            // Random position and size
-            emoji.style.left = Math.random() * window.innerWidth + "px";
-            emoji.style.fontSize = Math.random() * 20 + 20 + "px"; // Random size between 20px and 40px
-
-            // Remove emoji after animation
-            setTimeout(() => {
-                emoji.remove();
-            }, 4000);
-        }
-
-        // Generate floating emojis continuously
-        setInterval(createFloatingEmoji, 500);
     </script>
 </body>
 </html>
