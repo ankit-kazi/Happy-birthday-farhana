@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bengali Poetry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #d4f1d2; /* Light green theme */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .note {
+      width: 300px; /* Increased width */
+      height: 250px; /* Increased height */
+      background-color: #ffffff;
+      border: 1px solid #4CAF50;
+      border-radius: 10px;
+      padding: 20px; /* Increased padding */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      text-align: justify;
+    }
+    .note:hover {
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .note h3 {
+      font-size: 1.2em; /* Slightly larger title */
+      color: #333;
+      margin-bottom: 15px; /* More space for title */
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: bold;
+    }
+    .note p {
+      font-size: 1.1em; /* Slightly larger text */
+      color: #555;
+      line-height: 1.6;
+      overflow-y: auto; /* Enable vertical scrolling */
+      font-weight: bold;
+      max-height: 150px; /* Allow scrolling within the note */
+    }
+    .note.active {
+      width: 80%;
+      height: 400px;
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      z-index: 10;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 30px; /* Increased padding for better visibility */
+    }
+    .note.active h3 {
+      white-space: normal;
+    }
+    .note.active p {
+      overflow-y: auto; /* Enable vertical scrolling when expanded */
+      max-height: 200px; /* Max height when expanded to maintain scrolling */
+    }
+    /* Music Control Buttons */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 5px;
+    }
+    .music-btn:hover {
+      background-color: #45a049;
+    }
+    #play-music-btn {
+      right: 140px;
+    }
+    #stop-music-btn {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Note 1: Poem 1 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>সময়ের কোলে</h3>
+    <p>
+      <b>
+        শুয়ে আজও এইখানে ভাবনা তোমায় নিয়ে<br>
+        যে শুধু হয় শেষ পাতাগুলোই<br>
+        শুধু তোমারই লেখা নাম<br>
+        আজও তোমায় হারানোর যে ভয়<br><br>
+        তুমি আজও রয়েছ<br>
+        মায়ার এই ঘরে<br>
+        তোমার আঁকা ছবিগুলো<br>
+        আজও আকাশে ওড়ে<br>
+        মনে আজও জমে সুর<br>
+        গান গেয়ে যে যায়<br>
+        বয়ে চলা পাতাগুলো<br>
+        তোমাকেই খুঁজে পাই<br><br>
+        ভেবেছি শুধু তোমারই যে নাম<br>
+        ভরে যায় আমার এ অ্যালবাম<br>
+        তোমায় ঘিরে ওড়ানো সব ঘুড়ি<br>
+        জগৎ জুড়ে শুধু তোমারই যে নাম
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 2: Poem 2 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>হারিয়ে গেছি</h3>
+    <p>
+      <b>
+        এই স্বপ্নের ছায়ায় গিয়ে দাড়িয়ে আছি<br>
+        এই আশার পাহাড় নিয়ে<br>
+        চললাম আমি<br>
+        শুধু তোকে কাছে পেতে<br>
+        দাড়িয়ে আমি<br>
+        এই সময়ের অপেক্ষতে<br><br>
+        কান্না ভেজা চোখ<br>
+        বৃষ্টির আড়ালে লোকাই<br>
+        খুঁজে বেড়াই মন<br>
+        ক্লান্ত অসহায়<br>
+        হারিয়ে গেছিস তুই<br>
+        তাই নিজেকে খুঁজে বেড়াই<br>
+        অন্ধকার এই মন<br>
+        শুধু তোকেই খুঁজে যায়<br><br>
+        সময়ের অপেক্ষায়<br>
+        যত স্বপ্ন বুকে নিয়ে<br>
+        ছিনিয়ে নেবো আমি<br>
+        আশার হাত দিয়ে<br>
+        জমে থাকা ব্যথা<br>
+        অভিমানের বুক চিড়ে<br>
+        কবিতার শেষ লাইন<br>
+        শুধু তোমার নাম নিয়ে<br><br>
+        বয়ে চলা এই হাওয়ায়<br>
+        শরীর ভাসিয়ে যায়<br>
+        তোমার আমার মিলনের এই<br>
+        সময়ের অপেক্ষায়
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 3: Poem 3 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>কথা দেওয়া ছিল</h3>
+    <p>
+      <b>
+        কথা দেওয়া ছিল, কথা দেওয়া আছে, কথা দেওয়া থাকবে<br>
+        ফিরে ঠিকই আসবো, তুমি অপেক্ষারত হয়ে থাকবে,<br>
+        গুছিয়ে রেখে তোমার মনের ঘরের আলমারি টা,<br>
+        ওখানে আমারই দেওয়া ভালোবাসা সাজিয়ে রাখা থাকবে।
+      </b>
+    </p>
+  </div>
+
+  <!-- Music Control Buttons -->
+  <button id="play-music-btn" class="music-btn" onclick="playMusic()">Play Music</button>
+  <button id="stop-music-btn" class="music-btn" onclick="stopMusic()">Stop Music</button>
+
+  <script>
+    // Create audio object from 'bariye.mp3' (in the same folder)
+    let audio = new Audio('bariye.mp3');
+    audio.loop = true;
+    
+    // Function to play the music
+    function playMusic() {
+      audio.play();
+    }
+    
+    // Function to stop the music and reset it
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    
+    // Toggle function to expand or collapse a note
+    function toggleNote(note) {
+      if (note.classList.contains('active')) {
+        note.classList.remove('active');
+      } else {
+        let allNotes = document.querySelectorAll('.note');
+        allNotes.forEach(function(n) {
+          n.classList.remove('active');
+        });
+        note.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Poetry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #d4f1d2; /* Light green theme */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      position: relative;
+    }
+    .note {
+      width: 300px;
+      height: 250px;
+      background-color: #ffffff;
+      border: 1px solid #4CAF50;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: justify;
+      position: relative;
+    }
+    .note:hover {
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .note h3 {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: bold;
+    }
+    .note p {
+      font-size: 1.1em;
+      color: #555;
+      line-height: 1.6;
+      overflow-y: auto;
+      font-weight: bold;
+      max-height: 150px;
+    }
+    .note.active {
+      width: 80%;
+      height: 400px;
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      z-index: 10;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 30px;
+    }
+    .note.active h3 {
+      white-space: normal;
+    }
+    .note.active p {
+      overflow-y: auto;
+      max-height: 200px;
+    }
+    /* Music Control Buttons */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 5px;
+    }
+    .music-btn:hover {
+      background-color: #45a049;
+    }
+    #play-music-btn {
+      right: 140px;
+    }
+    #stop-music-btn {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Note 1: Poem 1 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>I am all yours</h3>
+    <p>
+      <b>
+        I am all yours<br><br>
+        Let's put our hearts together<br>
+        Our never ending love for each other<br>
+        Vows of never leaving your hand<br>
+        Every time I will take your stand<br><br>
+
+        You are the sweetest gem of mine<br>
+        Our problems are difficult but fine<br>
+        Under the blanket of loveline
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 2: Poem 2 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>More than you want to get</h3>
+    <p>
+      <b>
+        More than you want to get<br>
+        You can but you have to take<br>
+        Love is more than a like<br>
+        More than affection<br>
+        More than a feeling<br>
+        More than attraction<br><br>
+
+        Feel it, do it, just only do<br>
+        You have to go, you have to do<br>
+        Let's go make some noise<br>
+        Spread this with more than a voice<br>
+        Love is not only a thing at all<br>
+        It can't break, can't recall<br><br>
+
+        Just go<br>
+        More than you say, little so..
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 3: Poem 3 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>There is some feelings</h3>
+    <p>
+      <b>
+        There is some feelings<br>
+        Which can't be expressed<br>
+        There is some feelings<br>
+        Which you can't feel<br><br>
+
+        The pain that bites me<br>
+        That is giving me a lifeless<br>
+        I am feeling you are here<br>
+        Trying to sit beside you<br>
+        I want you to talk<br>
+        That I can sweetly hear<br><br>
+
+        Smile hides this, none can feel<br>
+        My feeling is alive, yes<br>
+        There is a place special<br>
+        Where she always stays
+      </b>
+    </p>
+  </div>
+
+  <!-- Music Control Buttons -->
+  <button id="play-music-btn" class="music-btn" onclick="playMusic()">Play Music</button>
+  <button id="stop-music-btn" class="music-btn" onclick="stopMusic()">Stop Music</button>
+
+  <script>
+    // Create audio object using "smile.mp3" from the same folder
+    let audio = new Audio('smile.mp3');
+    audio.loop = true;
+
+    // Function to play music
+    function playMusic() {
+      audio.play();
+    }
+
+    // Function to stop music and reset it
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+    // Toggle function to expand or collapse a note
+    function toggleNote(note) {
+      if (note.classList.contains('active')) {
+        note.classList.remove('active');
+      } else {
+        let allNotes = document.querySelectorAll('.note');
+        allNotes.forEach(function(n) {
+          n.classList.remove('active');
+        });
+        note.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>

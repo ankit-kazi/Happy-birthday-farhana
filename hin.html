@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindi Poetry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #d4f1d2; /* Light green theme */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      position: relative;
+    }
+    .note {
+      width: 300px;
+      height: 250px;
+      background-color: #ffffff;
+      border: 1px solid #4CAF50;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: justify;
+      position: relative;
+    }
+    .note:hover {
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .note h3 {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: bold;
+    }
+    .note p {
+      font-size: 1.1em;
+      color: #555;
+      line-height: 1.6;
+      overflow-y: auto;
+      font-weight: bold;
+      max-height: 150px;
+    }
+    .note.active {
+      width: 80%;
+      height: 400px;
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      z-index: 10;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 30px;
+    }
+    .note.active h3 {
+      white-space: normal;
+    }
+    .note.active p {
+      overflow-y: auto;
+      max-height: 200px;
+    }
+    /* Music Control Buttons */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 5px;
+    }
+    .music-btn:hover {
+      background-color: #45a049;
+    }
+    #play-music-btn {
+      right: 140px;
+    }
+    #stop-music-btn {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Note 1: Poem 1 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Khubsurti iss duniya main bohot thi</h3>
+    <p>
+      <b>
+      Khubsurti iss duniya main bohot thi<br>
+      Lekin sab gayeb si ho gyi<br>
+      Khubsurti mujhe kahi aur dikhti hi nhi<br>
+      Jab kadam tumhare iss dil pe par gyi<br>
+      Aankhein tumse kabhi hatti hi nhi<br>
+      Dil toh tumhare pass hi reh gya<br>
+      Lagta hain ye chaand vi tumhare Noor k aage<br>
+      Apna Noor dikhane main sharma gya<br>
+      Itni nasheeli pyari aankhein lekar<br>
+      Jab ghayel iss naadan ko karti ho<br>
+      Sene main jab sar rakho apna tum<br>
+      Samjh jaata hu, Jahan Mera bash tum hi ho
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 2: Poem 2 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Jab tum muskurati ho</h3>
+    <p>
+      <b>
+      Jab tum muskurati ho<br>
+      Meri ye duniya muskurati hain<br>
+      Jab tum un Nazar se dekhti ho<br>
+      Humare liye nazara ban jata hain<br>
+      Sabr kar rakhe bash apke liye<br>
+      Fakir hain hum apke pyaar ke<br>
+      Zamana kuch vi bol de<br>
+      Aashiqui hain hum aapke
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 3: Poem 3 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Iss haseen chere k piche</h3>
+    <p>
+      <b>
+      Iss haseen chere k piche<br>
+      Hum Bina diwana hoke kaise rahe<br>
+      Tumhari hasi ko dekhkar<br>
+      Hum Bina pyaar kiye kaise rahe<br>
+      Tum ko nhi pata<br>
+      Kya becheni hoti iss Dil main<br>
+      Tumse na baat karke<br>
+      Humara Dil shant kaise rahe
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 4: Poem 4 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Khudko nawab khene Wale</h3>
+    <p>
+      <b>
+      Khudko nawab khene Wale<br>
+      Khud faqeer ban gye<br>
+      Iss muhabbat k rigistaan main<br>
+      Ishq ke musafir ban gye<br>
+      Muhabbat dhundne nikle the<br>
+      Na jaane kab kho gye<br>
+      Kho gye, kho jaane dijiye<br>
+      Kiyuki aapke Ishq main dub gye
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 5: Poem 5 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Muhabbat ki imtihan dete dete</h3>
+    <p>
+      <b>
+      Muhabbat ki imtihan dete dete<br>
+      Khudko pehchan na paaye<br>
+      Tumhara hone ki khwahish main<br>
+      Khudka na ho paaye<br>
+      Dil tumhe pehle hi de diya hain<br>
+      Wo wapas mang na paaye<br>
+      Kho gye kho jaane dijiye<br>
+      Apka aashiqui hi hum bash ban jaaye
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 6: Poem 6 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Wo meri aadat ho gyi hai</h3>
+    <p>
+      <b>
+      Wo meri aadat ho gyi hai<br>
+      Wo meri har ek ibaadaat main shamil ho gyi hai<br><br>
+      Dil kab uske liye dhadakne laga pta nhi<br>
+      Lekin har ek dua mai usse mangu, ye meri chahat hogyi hai
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 7: Poem 7 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Muhabbat apse itni ho gyi</h3>
+    <p>
+      <b>
+      Muhabbat apse itni ho gyi<br>
+      Ki nafrat khudko karne lagah hu<br>
+      Iss dariya e Ishq main<br>
+      Akele hi dub Jo gya hu<br>
+      Ishq toh ek dil ki bimaari hain<br>
+      Jo thik na ho payega<br>
+      Muhabbat Apse, apko khwabo main chana<br>
+      Bash yehi ibadat humse ho payega
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 8: Poem 8 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Waqt jaisa tham sa gya</h3>
+    <p>
+      <b>
+      Waqt jaisa tham sa gya<br>
+      Jo palat k dekha apne<br>
+      Shanshe thamsi gyi<br>
+      Jo awaj suna Diya apne<br>
+      Muhabbat kya hota hai<br>
+      wo toh malum nhi<br>
+      Dil ko sukuun toh Mila<br>
+      Jo muskura Diya hain apne
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 9: Poem 9 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Tum wo gulab ho</h3>
+    <p>
+      <b>
+      Tum wo gulab ho<br>
+      Jisme koi kaate nhi hain<br>
+      Tum wo chaand ho<br>
+      Jisme koi dag nhi hain<br>
+      Pass Jo raho tum mere<br>
+      Ye bechen Dil shant ho jata hain<br>
+      Bash saath challo tum agar<br>
+      Dil ka banjar rigistan bagicha ban jata hain
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 10: Poem 10 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Wo puchte, Shiddat se muhabbat</h3>
+    <p>
+      <b>
+      Wo puchte, Shiddat se muhabbat hum kiyu karte<br>
+      Kiyuki muhabbat main bewafaai humko na ataa<br>
+      Janaab khuda ko jano, rab ko yaad karo<br>
+      Kiyuki Shirk toh khuda vi maaf na karta
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 11: Poem 11 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Shayeri main utne labj na hain</h3>
+    <p>
+      <b>
+      Shayeri main utne labj na hain<br>
+      Jo is Dil ko thandak de paaye<br>
+      Shayeri wasi kabhi likh na payoge<br>
+      Jo muhabbat ko tum taak le ajaye
+      </b>
+    </p>
+  </div>
+
+  <!-- Note 12: Poem 12 -->
+  <div class="note" onclick="toggleNote(this)">
+    <h3>Khwabo k kasti main hum nikal pare the</h3>
+    <p>
+      <b>
+      Khwabo k kasti main hum nikal pare the<br>
+      Muhabbat samundar main bash dhundne tumhe<br>
+      Umeed k lehero pe bash jee rhe the<br>
+      Dubna toh tha hi humhe<br>
+      Tum humari na hogi janke vi<br>
+      Muhabbat ki ibadat main bash manga tha tumhe
+      </b>
+    </p>
+  </div>
+
+  <!-- Music Control Buttons -->
+  <button id="play-music-btn" class="music-btn" onclick="playMusic()">Play Music</button>
+  <button id="stop-music-btn" class="music-btn" onclick="stopMusic()">Stop Music</button>
+
+  <script>
+    // Create audio object using "sanam.mp3" from the same folder
+    let audio = new Audio('sanam.mp3');
+    audio.loop = true;
+
+    // Function to play music
+    function playMusic() {
+      audio.play();
+    }
+    // Function to stop music and reset it
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    // Toggle function to expand or collapse a note
+    function toggleNote(note) {
+      if (note.classList.contains('active')) {
+        note.classList.remove('active');
+      } else {
+        let allNotes = document.querySelectorAll('.note');
+        allNotes.forEach(function(n) {
+          n.classList.remove('active');
+        });
+        note.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
